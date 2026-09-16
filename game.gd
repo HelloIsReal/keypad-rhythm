@@ -1,12 +1,16 @@
 extends Node2D
 var rng = RandomNumberGenerator
-var note = preload("res://scenes/note.tscn")
-var spawnOffset = Vector2(300,100)
+var note = preload("res://scenes/tile.tscn")
+var spawnOffset = Vector2(800,300)
+var songPlaying=true
 
 @export var bpm = 100
-@export var notes = [1,2,3,4,5]
+@export var notes:Array[Chart]
 
-# Called when the node enters the scene tree for the first time.
+var bpmPerSecond = 60/bpm
+var currentTime=0
+var currentNote=0
+
 func _ready() -> void:
 	var noteRank=0
 	var noteOffset=0
@@ -22,3 +26,22 @@ func _ready() -> void:
 			newNote.global_position += spawnOffset
 			newNote.myRank = noteRank
 			#print("x:",i,", y:",j)
+	songStart()
+
+func songStart():
+	$badApple.play()
+	
+func tickStart():
+	while(songPlaying):
+		await get_tree().create_timer(bpmPerSecond).timeout
+		currentTime+=1
+		if(currentTime>=notes[currentNote]):
+			currentNote+=1
+			spawnNote()
+
+func _on_bad_apple_finished() -> void:
+	songPlaying=false
+
+func spawnNote():
+	pass
+	
