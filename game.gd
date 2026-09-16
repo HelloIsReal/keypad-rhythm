@@ -5,11 +5,13 @@ var spawnOffset = Vector2(800,300)
 var songPlaying=true
 
 @export var bpm = 100
-@export var notes:Array[Chart]
+@export var songs:Array[Song]
+var songIndex:int =0;
 
 var bpmPerSecond = 60/bpm
 var currentTime=0
 var currentNote=0
+var measure:=0.0
 
 func _ready() -> void:
 	var noteRank=0
@@ -28,6 +30,11 @@ func _ready() -> void:
 			#print("x:",i,", y:",j)
 	songStart()
 
+func _process(delta: float) -> void:
+	measure = $badApple.get_playback_position() * bpm / 60
+	songs[songIndex].notes[1].lane
+	#$badApple.get_playback_position()
+
 func songStart():
 	$badApple.play()
 	
@@ -35,9 +42,10 @@ func tickStart():
 	while(songPlaying):
 		await get_tree().create_timer(bpmPerSecond).timeout
 		currentTime+=1
-		if(currentTime>=notes[currentNote]):
-			currentNote+=1
-			spawnNote()
+		
+		#if(currentTime>=notes[currentNote]):
+			#currentNote+=1
+			#spawnNote()
 
 func _on_bad_apple_finished() -> void:
 	songPlaying=false

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Song" format=3 uid="uid://bgc6lq83kjqx0"]
+
+[ext_resource type="Script" uid="uid://cjo45dgi3ed2" path="res://chart.gd" id="1_g2x5u"]
+[ext_resource type="Script" uid="uid://cxjfr1mx4y7e7" path="res://song.gd" id="2_ppks5"]
+
+[sub_resource type="Resource" id="Resource_64dtl"]
+script = ExtResource("1_g2x5u")
+metadata/_custom_type_script = "uid://cjo45dgi3ed2"
+
+[sub_resource type="Resource" id="Resource_u5sy4"]
+script = ExtResource("1_g2x5u")
+metadata/_custom_type_script = "uid://cjo45dgi3ed2"
+
+[resource]
+script = ExtResource("2_ppks5")
+notes = Array[ExtResource("1_g2x5u")]([SubResource("Resource_64dtl"), SubResource("Resource_u5sy4")])
+metadata/_custom_type_script = "uid://cxjfr1mx4y7e7"
