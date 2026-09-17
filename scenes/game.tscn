@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cxjfr1mx4y7e7" path="res://song.gd" id="2_iywne"]
 [ext_resource type="AudioStream" uid="uid://dh6ppqrdahq3o" path="res://[Alstroemeria Records] Bad Apple!!.mp3" id="2_yqjtg"]
 [ext_resource type="Resource" uid="uid://bgc6lq83kjqx0" path="res://badApple.tres" id="3_p57ef"]
-[ext_resource type="AudioStream" uid="uid://b8uw0hlu0jqfp" path="res://Elevator-ding.wav" id="4_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=2145196854]
 script = ExtResource("1_uwrxv")
@@ -12,9 +11,5 @@ songs = Array[ExtResource("2_iywne")]([ExtResource("3_p57ef")])
 
 [node name="badApple" type="AudioStreamPlayer2D" parent="." unique_id=2059830167]
 stream = ExtResource("2_yqjtg")
-
-[node name="ding" type="AudioStreamPlayer2D" parent="." unique_id=448123005]
-stream = ExtResource("4_lbhrr")
-volume_db = 5.0
 
 [connection signal="finished" from="badApple" to="." method="_on_bad_apple_finished"]

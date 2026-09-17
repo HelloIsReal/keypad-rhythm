@@ -6,7 +6,7 @@ var songPlaying=true
 
 @export var bpm = 100
 @export var songs:Array[Song]
-var songIndex:int =0;
+var songIndex:int = 0
 
 var bpmPerSecond = 60/bpm
 var currentTime=0
@@ -28,6 +28,8 @@ func _ready() -> void:
 			newNote.global_position += spawnOffset
 			newNote.myRank = noteRank
 			#print("x:",i,", y:",j)
+	for i in songIndex:
+		songs[songIndex].notes[1].lane
 	songStart()
 
 func _process(delta: float) -> void:

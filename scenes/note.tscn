@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://bv21vy1djxa00"]
 
 [ext_resource type="Script" uid="uid://cbbtyynnxn6u7" path="res://note.gd" id="1_t3yvt"]
+[ext_resource type="AudioStream" uid="uid://b8uw0hlu0jqfp" path="res://Elevator-ding.wav" id="2_1bnk6"]
 
 [node name="Note" type="Node2D" unique_id=113480809]
 script = ExtResource("1_t3yvt")
+
+[node name="ding" type="AudioStreamPlayer2D" parent="." unique_id=2114359190]
+stream = ExtResource("2_1bnk6")
+volume_db = 5.0
