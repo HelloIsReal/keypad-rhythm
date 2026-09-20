@@ -12,6 +12,6 @@ func _process(delta: float) -> void:
 		ghostImage.modulate.a = 1
 		ghostImage.global_position = global_position
 		get_tree().current_scene.add_child(ghostImage)
-		
+		Globals.tile+"e" = global_position
 		
 		
