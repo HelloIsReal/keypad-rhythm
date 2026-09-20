@@ -4,11 +4,11 @@ var note = preload("res://scenes/tile.tscn")
 var spawnOffset = Vector2(800,300)
 var songPlaying=true
 
-@export var bpm = 100
+@export var bpm = 138
 @export var songs:Array[Song]
 var songIndex:int = 0
 
-var bpmPerSecond = 60/bpm
+var bpmPerSecond: float = bpm/60
 var currentTime=0
 var currentNote=0
 var measure:=0.0
@@ -31,19 +31,33 @@ func _ready() -> void:
 	for i in songIndex:
 		songs[songIndex].notes[1].lane
 	songStart()
+	await get_tree().create_timer(0.4).timeout
+	var running=true
+	while(songPlaying):
+		if(running):
+			running=false
+			await get_tree().create_timer(bpmPerSecond/8).timeout
+			currentTime+=1
+			
+			print(currentTime)
+			print(bpmPerSecond)
+			if(currentTime % 5 == 0):
+				print("ping!")
+				$ding.play()
+			running=true
+			
 
 func _process(delta: float) -> void:
-	measure = $badApple.get_playback_position() * bpm / 60
+	measure = $badApple.get_playback_position()# * (bpm / 60)
 	songs[songIndex].notes[1].lane
 	#$badApple.get_playback_position()
 
 func songStart():
 	$badApple.play()
+	#tickStart()
 	
-func tickStart():
-	while(songPlaying):
-		await get_tree().create_timer(bpmPerSecond).timeout
-		currentTime+=1
+#func tickStart():
+	
 		
 		#if(currentTime>=notes[currentNote]):
 			#currentNote+=1
@@ -54,4 +68,8 @@ func _on_bad_apple_finished() -> void:
 
 func spawnNote():
 	pass
+	
+
+
+#func _on_bpm_timeout():
 	
