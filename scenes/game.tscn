@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://b8uw0hlu0jqfp" path="res://Elevator-ding.wav" id="5_iywne"]
 
 [node name="Game" type="Node2D" unique_id=2145196854]
+position = Vector2(1.695, 0)
 script = ExtResource("1_uwrxv")
 songs = Array[ExtResource("2_iywne")]([ExtResource("3_p57ef")])
 

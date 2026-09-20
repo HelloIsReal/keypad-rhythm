@@ -21,9 +21,9 @@ var noteSpeed: float = 1.0
 #var measure:=0.0
 
 func _ready() -> void:
-	secondsPerbeat = 60/bpm
-	#eightBeats = secondsPerbeat / 8
-	
+	print("BPM: ", bpm)
+	print("Seconds per beat: ", secondsPerbeat)
+	secondsPerbeat = 60.0 / bpm
 	
 	var noteRank=0
 	var noteOffset=0
@@ -69,20 +69,21 @@ func _process(delta: float) -> void:
 		currentTime = $badApple.get_playback_position()
 		var notes = songs[songIndex].notes
 		
-		var currentBeat = currentTime / secondsPerbeat
-		#var currentEight = currentTime / eightBeats
+		#var currentBeat = currentTime / secondsPerbeat
 		
 		if noteIndex >= notes.size():
 			return
 		var noteData = notes[noteIndex]
-		
 		var noteTime = noteData.beat * secondsPerbeat
+		var spawnTime = noteTime# - noteSpeed
 		
-		var spawnTime = noteTime - noteSpeed
+		#print(
+		#"current:", currentTime,
+		#" beat:", noteData.beat,
+		#" noteTime:", noteTime,
+		#" spawnTime:", spawnTime
+	#)
 		
-		#if(noteIndex != currentNote):
-			#currentNote = noteIndex
-			#spawnNote()
 		if currentTime >= spawnTime:
 			spawnNote(noteData)
 			noteIndex+=1

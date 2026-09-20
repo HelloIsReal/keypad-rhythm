@@ -5,15 +5,38 @@
 
 [sub_resource type="Resource" id="Resource_64dtl"]
 script = ExtResource("1_g2x5u")
+beat = 4.0
 lane = 1
 metadata/_custom_type_script = "uid://cjo45dgi3ed2"
 
 [sub_resource type="Resource" id="Resource_u5sy4"]
 script = ExtResource("1_g2x5u")
+beat = 8.0
 lane = 3
+metadata/_custom_type_script = "uid://cjo45dgi3ed2"
+
+[sub_resource type="Resource" id="Resource_g2x5u"]
+script = ExtResource("1_g2x5u")
+beat = 12.0
+lane = 5
+metadata/_custom_type_script = "uid://cjo45dgi3ed2"
+
+[sub_resource type="Resource" id="Resource_iywne"]
+script = ExtResource("1_g2x5u")
+beat = 16.0
+metadata/_custom_type_script = "uid://cjo45dgi3ed2"
+
+[sub_resource type="Resource" id="Resource_p57ef"]
+script = ExtResource("1_g2x5u")
+beat = 20.0
+metadata/_custom_type_script = "uid://cjo45dgi3ed2"
+
+[sub_resource type="Resource" id="Resource_ppks5"]
+script = ExtResource("1_g2x5u")
+beat = 24.0
 metadata/_custom_type_script = "uid://cjo45dgi3ed2"
 
 [resource]
 script = ExtResource("2_ppks5")
-notes = Array[ExtResource("1_g2x5u")]([SubResource("Resource_64dtl"), SubResource("Resource_u5sy4")])
+notes = Array[ExtResource("1_g2x5u")]([SubResource("Resource_64dtl"), SubResource("Resource_u5sy4"), SubResource("Resource_g2x5u"), SubResource("Resource_iywne"), SubResource("Resource_p57ef"), SubResource("Resource_ppks5")])
 metadata/_custom_type_script = "uid://cxjfr1mx4y7e7"
