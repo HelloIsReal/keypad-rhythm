@@ -1,6 +1,6 @@
 extends Node2D
 var rng = RandomNumberGenerator
-var note = preload("res://scenes/tile.tscn")
+var tile = preload("res://scenes/tile.tscn")
 var spawnOffset = Vector2(800,300)
 var songPlaying=true
 
@@ -32,13 +32,13 @@ func _ready() -> void:
 		for j in 3:
 			noteRank += 1
 			
-			var newNote = note.instantiate()
-			get_tree().current_scene.add_child(newNote)
+			var newTile = tile.instantiate()
+			get_tree().current_scene.add_child(newTile)
 			
-			newNote.global_position.x += 150 * j
-			newNote.global_position.y += 150 * noteOffset
-			newNote.global_position += spawnOffset
-			newNote.myRank = noteRank
+			newTile.global_position.x += 150 * j
+			newTile.global_position.y += 150 * noteOffset
+			newTile.global_position += spawnOffset
+			newTile.myRank = noteRank
 			#print("x:",i,", y:",j)
 			
 	#for i in songIndex:
@@ -75,19 +75,12 @@ func _process(delta: float) -> void:
 			return
 		var noteData = notes[noteIndex]
 		var noteTime = noteData.beat * secondsPerbeat
-		var spawnTime = noteTime# - noteSpeed
-		
-		#print(
-		#"current:", currentTime,
-		#" beat:", noteData.beat,
-		#" noteTime:", noteTime,
-		#" spawnTime:", spawnTime
-	#)
+		var spawnTime = noteTime - noteSpeed
 		
 		if currentTime >= spawnTime:
 			spawnNote(noteData)
 			noteIndex+=1
-		#print(currentTime)
+			
 
 func songStart():
 	$badApple.play()
@@ -106,7 +99,10 @@ func _on_bad_apple_finished() -> void:
 func spawnNote(data):
 	print("spawned on beat ",data.beat)
 	print("spawned on number ",data.lane)
-	$ding.play()
+	var newNote = tile.instantiate()
+	get_tree().current_scene.add_child(newNote)
+	
+	#$ding.play()
 	
 
 
