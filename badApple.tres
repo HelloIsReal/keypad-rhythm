@@ -10,7 +10,6 @@ metadata/_custom_type_script = "uid://cjo45dgi3ed2"
 
 [sub_resource type="Resource" id="Resource_u5sy4"]
 script = ExtResource("1_g2x5u")
-note = 4
 lane = 3
 metadata/_custom_type_script = "uid://cjo45dgi3ed2"
 

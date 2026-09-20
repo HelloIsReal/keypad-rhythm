@@ -13,7 +13,7 @@ var currentTime: float = 0.0
 var currentNote=0
 
 var secondsPerbeat: float# = bpm/60
-var eightBeats: float
+#var eightBeats: float
 
 var noteSpeed: float = 1.0
 
@@ -22,7 +22,7 @@ var noteSpeed: float = 1.0
 
 func _ready() -> void:
 	secondsPerbeat = 60/bpm
-	eightBeats = secondsPerbeat / 8
+	#eightBeats = secondsPerbeat / 8
 	
 	
 	var noteRank=0
@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 		var notes = songs[songIndex].notes
 		
 		var currentBeat = currentTime / secondsPerbeat
-		var currentEight = currentTime / eightBeats
+		#var currentEight = currentTime / eightBeats
 		
 		if noteIndex >= notes.size():
 			return
@@ -85,6 +85,7 @@ func _process(delta: float) -> void:
 			#spawnNote()
 		if currentTime >= spawnTime:
 			spawnNote(noteData)
+			noteIndex+=1
 		#print(currentTime)
 
 func songStart():
