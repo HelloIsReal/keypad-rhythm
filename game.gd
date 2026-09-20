@@ -7,20 +7,22 @@ var songPlaying=true
 @export var bpm = 138
 @export var songs:Array[Song]
 var songIndex:int = 0
+var noteIndex=0
 
 var currentTime: float = 0.0
 var currentNote=0
 
-var beatsPerSecond: float# = bpm/60
+var secondsPerbeat: float# = bpm/60
 var eightBeats: float
 
+var noteSpeed: float = 1.0
 
 
 #var measure:=0.0
 
 func _ready() -> void:
-	beatsPerSecond = 60/bpm
-	eightBeats = beatsPerSecond / 8
+	secondsPerbeat = 60/bpm
+	eightBeats = secondsPerbeat / 8
 	
 	
 	var noteRank=0
@@ -65,15 +67,24 @@ func _process(delta: float) -> void:
 	#$badApple.get_playback_position()
 	if $badApple.playing:
 		currentTime = $badApple.get_playback_position()
+		var notes = songs[songIndex].notes
 		
-		var currentBeat = currentTime / beatsPerSecond
+		var currentBeat = currentTime / secondsPerbeat
 		var currentEight = currentTime / eightBeats
 		
-		var noteIndex = floori(currentEight)
+		if noteIndex >= notes.size():
+			return
+		var noteData = notes[noteIndex]
 		
-		if(noteIndex != currentNote):
-			currentNote = noteIndex
-			spawnNote()
+		var noteTime = noteData.beat * secondsPerbeat
+		
+		var spawnTime = noteTime - noteSpeed
+		
+		#if(noteIndex != currentNote):
+			#currentNote = noteIndex
+			#spawnNote()
+		if currentTime >= spawnTime:
+			spawnNote(noteData)
 		#print(currentTime)
 
 func songStart():
@@ -90,8 +101,9 @@ func songStart():
 func _on_bad_apple_finished() -> void:
 	songPlaying=false
 
-func spawnNote():
-	print("spawned!")
+func spawnNote(data):
+	print("spawned on beat ",data.beat)
+	print("spawned on number ",data.lane)
 	$ding.play()
 	
 
